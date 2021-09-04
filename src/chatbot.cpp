@@ -68,7 +68,7 @@ ChatBot &ChatBot::operator=(ChatBot &&source) {
     if ( this == &source ) {
         return *this;
     }
-    delete _image;
+    if(_image != nullptr){ delete _image; }
     _image = new wxBitmap();
     *_image = *source._image;
     _chatLogic = source._chatLogic;
