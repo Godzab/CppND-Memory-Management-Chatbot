@@ -68,7 +68,8 @@ ChatBot &ChatBot::operator=(ChatBot &&source) {
     if ( this == &source ) {
         return *this;
     }
-    if(_image != nullptr){ delete _image; }
+
+    delete _image;
     _image = new wxBitmap();
     *_image = *source._image;
     _chatLogic = source._chatLogic;
@@ -79,6 +80,28 @@ ChatBot &ChatBot::operator=(ChatBot &&source) {
     source._chatLogic = nullptr;
     source._rootNode = nullptr;
 
+    return *this;
+}
+
+ChatBot::ChatBot(const ChatBot &source){
+    _image = new wxBitmap();
+    *_image = *source._image;
+    _chatLogic = source._chatLogic;
+    _chatLogic->SetChatbotHandle(this);
+    _rootNode = source._rootNode;
+}
+
+ChatBot &ChatBot::operator=(ChatBot &source){
+    if ( this == &source ) {
+        return *this;
+    }
+
+    delete _image;
+    _image = new wxBitmap();
+    *_image = *source._image;
+    _chatLogic = source._chatLogic;
+    _chatLogic->SetChatbotHandle(this);
+    _rootNode = source._rootNode;
     return *this;
 }
 ////
