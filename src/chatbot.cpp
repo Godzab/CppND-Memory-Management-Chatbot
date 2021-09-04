@@ -46,19 +46,19 @@ ChatBot::~ChatBot()
 ////
 
 // move constructor
-ChatBot::ChatBot(ChatBot && src) {
+ChatBot::ChatBot(ChatBot && source) {
     std::cout << "ChatBot Move Constructor" << std::endl;
 
     _image = new wxBitmap();
-    *_image = *src._image;
+    *_image = *source._image;
 
-    _chatLogic = src._chatLogic;
+    _chatLogic = source._chatLogic;
     _chatLogic->SetChatbotHandle(this);
 
-    _rootNode = src._rootNode;
-    src._image = nullptr;
-    src._chatLogic = nullptr;
-    src._rootNode = nullptr;
+    _rootNode = source._rootNode;
+    source._image = nullptr;
+    source._chatLogic = nullptr;
+    source._rootNode = nullptr;
 }
 
 // move assignment operator
